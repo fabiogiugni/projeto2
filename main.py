@@ -25,13 +25,13 @@ while True:
     if keys[pygame.K_LEFT]:
         direction = "LEFT"
         snake.turn(direction)
-    if keys[pygame.K_RIGHT]:
+    elif keys[pygame.K_RIGHT]:
         direction = "RIGHT"
         snake.turn(direction)
-    if keys[pygame.K_UP]:
+    elif keys[pygame.K_UP]:
         direction = "UP"
         snake.turn(direction)
-    if keys[pygame.K_DOWN]:
+    elif keys[pygame.K_DOWN]:
         direction = "DOWN"
         snake.turn(direction)
 
