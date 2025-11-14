@@ -1,7 +1,7 @@
 import pygame
 
 from entities.apple import Apple
-from entities.body import Body
+from entities.snake import Snake
 
 
 pygame.init()
@@ -11,7 +11,7 @@ display = pygame.display.set_mode((600, 600))
 pygame.display.set_caption('Snake Game')
 
 apple = Apple()
-snake = Body((100, 100))
+snake = Snake((100, 100))
 direction = "DOWN"
 
 while True:
@@ -24,21 +24,22 @@ while True:
     keys = pygame.key.get_pressed()
     if keys[pygame.K_LEFT]:
         direction = "LEFT"
+        snake.turn(direction)
     if keys[pygame.K_RIGHT]:
         direction = "RIGHT"
+        snake.turn(direction)
     if keys[pygame.K_UP]:
         direction = "UP"
+        snake.turn(direction)
     if keys[pygame.K_DOWN]:
         direction = "DOWN"
+        snake.turn(direction)
 
-    snake.turn(direction)
-        
+    snake.walk()
 
     display.fill((255,255,255))
     snake.draw(display)
     apple.draw(display, (50, 50))
-
-    snake.walk()
     
 
     pygame.display.update()

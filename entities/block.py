@@ -6,7 +6,7 @@ class Block(Surface):
         super().__init__((15, 15))
         super().fill((0, 255, 0))
         self.__position = position
-        self.__direction = "DOWN"
+        self.__direction = ""
 
     @property
     def direction(self):
