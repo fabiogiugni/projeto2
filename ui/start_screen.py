@@ -1,13 +1,13 @@
 import pygame
-
-class StartScreen():
+class StartScreen:
     def __init__(self, game):
-        self.font = pygame.font.SysFont(None, 48)
+        self.game = game
+        self.font = pygame.font.SysFont('Arial', 30) 
 
     def update(self):
         pass
 
     def draw(self, display):
         display.fill((0, 0, 0))
-        text = self.font.render("APERTE ESPAÇO PARA INICIAR", True, (255, 255, 255))
+        text = self.font.render("Aperte Espaço Para Iniciar", True, (255, 255, 255))
         display.blit(text, (60, 280))
