@@ -6,12 +6,14 @@ from entities.snake import Snake
 
 pygame.init()
 
-display = pygame.display.set_mode((600, 600))
+SCREEN_RANGE = (600, 600)
+
+display = pygame.display.set_mode(SCREEN_RANGE)
 
 pygame.display.set_caption('Snake Game')
 
-apple = Apple()
-snake = Snake((100, 100))
+apple = Apple(SCREEN_RANGE)
+snake = Snake(SCREEN_RANGE)
 direction = "DOWN"
 
 while True:
@@ -39,7 +41,7 @@ while True:
 
     display.fill((255,255,255))
     snake.draw(display)
-    apple.draw(display, (50, 50))
+    apple.draw(display)
     
 
     pygame.display.update()
