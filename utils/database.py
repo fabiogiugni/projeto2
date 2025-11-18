@@ -52,7 +52,7 @@ class Database:
         except sqlite3.Error as e:
             raise RuntimeError(f"Erro ao criar tabelas: {e}")
 
-    def insert_score(self, player_name: str, player_apples: int, player_time: float, player_score: float) -> None:
+    def insertScore(self, player_name: str, player_apples: int, player_time: float, player_score: float) -> None:
         query = "INSERT INTO ranking (name, apples, time, score) VALUES (?, ?, ?, ?)"
         params = (player_name, player_apples, player_time, player_score)
 
@@ -62,7 +62,7 @@ class Database:
         except sqlite3.Error as e:
             raise RuntimeError(f"Erro ao inserir score no ranking: {e}")
 
-    def get_high_scores(self) -> list:
+    def getHighScores(self) -> list:
         query = "SELECT id, name, apples, time, score FROM ranking ORDER BY score DESC, id ASC LIMIT 10"
 
         try:
