@@ -5,5 +5,5 @@ CREATE TABLE IF NOT EXISTS ranking (
     name TEXT NOT NULL,
     apples INTEGER NOT NULL CHECK (apples >= 0),
     time INTEGER NOT NULL CHECK (time >= 0),
-    score REAL NOT NULL CHECK (score >= 0)
+    score INTEGER NOT NULL CHECK (score >= 0)
 );

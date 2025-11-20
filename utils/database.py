@@ -52,7 +52,7 @@ class Database:
         except sqlite3.Error as e:
             raise RuntimeError(f"Erro ao criar tabelas: {e}")
 
-    def insertScore(self, playerName: str, playerApples: int, playerTime: int, playerScore: float) -> None:
+    def insertScore(self, playerName: str, playerApples: int, playerTime: int, playerScore: int) -> None:
         query = "INSERT INTO ranking (name, apples, time, score) VALUES (?, ?, ?, ?)"
         params = (playerName, playerApples, playerTime, playerScore)
 

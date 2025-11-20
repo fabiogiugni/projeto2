@@ -27,8 +27,10 @@ SNAKE_SIZE = 15 #NÃO CONFIRMADO
 
 # Apple Settings
 
+# Score Settings
+APPLE_VALUE = 10
+TIME_VALUE = 3
 
 # Block Settings
-
 
 BLOCK_SIZE = 15 #NÃO CONFIRMADO
