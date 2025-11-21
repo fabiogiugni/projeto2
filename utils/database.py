@@ -8,15 +8,15 @@ from typing import TYPE_CHECKING, Optional
 
 class Database:
 
-    def __init__(self, db_path: str = "database.db") -> None:
+    def __init__(self, dbPath: str = "database.db") -> None:
 
-        self._db_path = db_path
+        self._dbPath = dbPath
         self._connection: Optional[sqlite3.Connection] = None
         self._cursor: Optional[sqlite3.Cursor] = None
 
-        if not os.path.exists(self._db_path):
+        if not os.path.exists(self._dbPath):
             try:
-                self._create(script_path="scripts/init.sql")
+                self._create(scriptPath="scripts/init.sql")
             except Exception as e:
                 raise RuntimeError(f"Erro ao criar o banco de dados: {e}")
 
@@ -28,19 +28,19 @@ class Database:
     def _connect(self) -> sqlite3.Connection:
         try:
             if not self._connection:
-                self._connection = sqlite3.connect(self._db_path)
+                self._connection = sqlite3.connect(self._dbPath)
                 self._connection.execute("PRAGMA foreign_keys = ON")
                 self._cursor = self._connection.cursor()
         except sqlite3.Error as e:
             raise RuntimeError(f"Falha ao abrir conexão com o database: {e}")
         return self._connection
 
-    def _create(self, script_path: str) -> None:
+    def _create(self, scriptPath: str) -> None:
         try:
-            with open(script_path, 'r', encoding='utf-8') as script_file:
-                script = script_file.read()
+            with open(scriptPath, 'r', encoding='utf-8') as scriptFile:
+                script = scriptFile.read()
         except FileNotFoundError:
-            raise RuntimeError(f"Arquivo de criação do banco não encontrado: {script_path}")
+            raise RuntimeError(f"Arquivo de criação do banco não encontrado: {scriptPath}")
         except Exception as e:
             raise RuntimeError(f"Erro ao ler script SQL: {e}")
 
@@ -52,9 +52,9 @@ class Database:
         except sqlite3.Error as e:
             raise RuntimeError(f"Erro ao criar tabelas: {e}")
 
-    def insert_score(self, player_name: str, player_apples: int, player_time: float, player_score: float) -> None:
+    def insertScore(self, playerName: str, playerApples: int, playerTime: int, playerScore: int) -> None:
         query = "INSERT INTO ranking (name, apples, time, score) VALUES (?, ?, ?, ?)"
-        params = (player_name, player_apples, player_time, player_score)
+        params = (playerName, playerApples, playerTime, playerScore)
 
         try:
             self._cursor.execute(query, params)
@@ -62,7 +62,7 @@ class Database:
         except sqlite3.Error as e:
             raise RuntimeError(f"Erro ao inserir score no ranking: {e}")
 
-    def get_high_scores(self) -> list:
+    def getHighScores(self) -> list:
         query = "SELECT id, name, apples, time, score FROM ranking ORDER BY score DESC, id ASC LIMIT 10"
 
         try:

@@ -3,16 +3,17 @@ import pygame
 from entities.apple import Apple
 from entities.snake import Snake
 
+from utils.settings import SCREEN_HEIGHT, SCREEN_WIDTH, CYAN, PURPLE
 
 pygame.init()
 
-SCREEN_RANGE = (600, 600)
+SCREEN_RANGE = (SCREEN_WIDTH, SCREEN_HEIGHT)
 
 display = pygame.display.set_mode(SCREEN_RANGE)
 
 pygame.display.set_caption('Snake Game')
 
-apple = Apple(SCREEN_RANGE)
+apple = Apple(SCREEN_RANGE, image_path="assets/apple.png")
 snake = Snake(SCREEN_RANGE)
 direction = "DOWN"
 
@@ -39,9 +40,12 @@ while True:
 
     snake.walk()
 
-    display.fill((255,255,255))
+    display.fill(CYAN)
     snake.draw(display)
     apple.draw(display)
-    
+
+    if snake.colide(apple):
+        snake.grow()
+        apple.beEaten()    
 
     pygame.display.update()
