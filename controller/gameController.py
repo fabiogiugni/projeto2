@@ -1,5 +1,6 @@
 import pygame
-from ui.start_screen import StartScreen
+from ui.startScreen import StartScreen
+
 
 # Essa classe é o controller geral. Ele vai gerenciar todas as páginas do projeto
 # Ela não recebe nada no init e chama todas as outras páginas
