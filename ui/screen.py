@@ -27,6 +27,10 @@ class Screen(ABC):
     @abstractmethod
     def update(self):
         pass
+    
+    @abstractmethod
+    def hover(self):
+        pass
 
     @abstractmethod
     def draw(self, display):

@@ -1,5 +1,5 @@
 import pygame
-from utils.settings import WHITE, GREEN_WHITE
+from utils.settings import WHITE, LIGHT_GREEN
 from ui.screen import Screen
 from ui.menuScreen import MenuScreen
 
@@ -15,6 +15,9 @@ class StartScreen(Screen):
     def update(self):
         self.update_blinker()
 
+    def hover(self):
+        pass
+
     def draw(self, display):
         super().draw(display) 
 
@@ -24,15 +27,15 @@ class StartScreen(Screen):
             (self.game.size[0]//2 - title.get_width()//2, 100)
         )
 
-        if (self.should_blink):
+        if (not self.should_blink):
             press = self.text_font.render("Aperte ESPAÇO para iniciar", False, WHITE)
             display.blit(
                 press,
-                (self.game.size[0]//2 - press.get_width()//2, 330)
+                (self.game.size[0]//2 - press.get_width()//2, 260)
             )
         else:
-            press = self.text_font.render("Aperte ESPAÇO para iniciar", False, GREEN_WHITE)
+            press = self.text_font.render("Aperte ESPAÇO para iniciar", False, LIGHT_GREEN)
             display.blit(
                 press,
-                (self.game.size[0]//2 - press.get_width()//2, 330)
+                (self.game.size[0]//2 - press.get_width()//2, 260)
             )
