@@ -17,11 +17,13 @@ class GameController:
 
     def run(self):
         while True:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    return
-
+            events = pygame.event.get()
+            if len(events) != 0:
+                for event in events:    
+                    if event.type == pygame.QUIT:
+                        pygame.quit()
+                        return
+                    self.current_screen.handle_events(event)
             self.current_screen.update()
             self.current_screen.draw(self.display)
 
