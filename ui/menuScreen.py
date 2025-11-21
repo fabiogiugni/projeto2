@@ -15,6 +15,12 @@ class MenuScreen(Screen):
     def draw(self, display):
         super().draw(display) 
 
+        title = self.title_font.render("SNAKE GAME", False, WHITE)
+        display.blit(
+            title,
+            (self.game.size[0]//2 - title.get_width()//2, 100)
+        )
+
         press = self.text_font.render("Funcionou", False, WHITE)
         display.blit(
             press,
