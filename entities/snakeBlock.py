@@ -1,8 +1,10 @@
 from .block import Block
 
+from utils.settings import BLOCK_SIZE
+
 class SnakeBlock(Block):
     def __init__(self, position : tuple = (45, 45), image_path: str = None):
-        super().__init__(size = (15, 15), position = position, image_path=image_path)
+        super().__init__(size = (BLOCK_SIZE, BLOCK_SIZE), position = position, image_path=image_path)
 
         self.__direction = ""
 

@@ -2,11 +2,11 @@ import pygame
 from .block import Block
 from random import randint
 
-from utils.settings import RED
+from utils.settings import RED, APPLE_SIZE
 
 class Apple(Block):
     def __init__(self, displayRange : tuple,  image_path: str = None):
-        super().__init__((15, 15), image_path=image_path)
+        super().__init__((APPLE_SIZE, APPLE_SIZE), image_path=image_path)
         super().fill(RED)
         self.__displayRange = displayRange
         self.__changePosition()
