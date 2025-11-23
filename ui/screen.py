@@ -1,5 +1,5 @@
 import pygame
-from screenInterface import ScreenInterface
+from ui.screenInterface import ScreenInterface
 
 class Screen(ScreenInterface):
     def __init__(self, game):
