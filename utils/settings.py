@@ -2,7 +2,7 @@ import pygame
 
 # Screen Settings
 FULLSCREEN = True  # Set to True for fullscreen mode
-SCREEN_WIDTH = 800  # Default width (used when not in fullscreen)
+SCREEN_WIDTH = 600  # Default width (used when not in fullscreen)
 SCREEN_HEIGHT = 600  # Default height (used when not in fullscreen)
 FPS = 60
 

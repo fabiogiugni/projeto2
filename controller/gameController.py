@@ -1,5 +1,5 @@
 import pygame
-from ui.startScreen import StartScreen
+from ui.start import Start
 
 
 # Essa classe é o controller geral. Ele vai gerenciar todas as páginas do projeto
@@ -13,7 +13,7 @@ class GameController:
         pygame.display.set_caption("Snake Game")
         self.clock = pygame.time.Clock()
 
-        self.current_screen = StartScreen(self)
+        self.current_screen = Start(self)
 
     def run(self):
         while True:
