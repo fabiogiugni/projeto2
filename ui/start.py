@@ -1,9 +1,9 @@
 import pygame
 from utils.settings import WHITE, LIGHT_GREEN
 from ui.screen import Screen
-from ui.menuScreen import MenuScreen
+from ui.menu import Menu
 
-class StartScreen(Screen):
+class Start(Screen):
     def __init__(self, game):
         super().__init__(game)
         self.press_text_rect = None  
@@ -11,11 +11,11 @@ class StartScreen(Screen):
     def handle_events(self, event):
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
-                self.game.current_screen = MenuScreen(self.game)
+                self.game.current_screen = Menu(self.game)
 
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if self.press_text_rect and self.press_text_rect.collidepoint(pygame.mouse.get_pos()):
-                self.game.current_screen = MenuScreen(self.game)
+                self.game.current_screen = Menu(self.game)
 
     def update(self):
         self.update_blinker()

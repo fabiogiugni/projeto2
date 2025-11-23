@@ -5,7 +5,7 @@ from ui.game import Game
 from ui.ranking import Ranking
 from ui.configs import Configs
 
-class MenuScreen(Screen):
+class Menu(Screen):
     def __init__(self, game):
         super().__init__(game)
         
