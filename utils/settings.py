@@ -25,7 +25,9 @@ GAME_TITLE = "Snake Game"
 
 # Snake Settings
 SNAKE_SPEED = 15 #NÃO CONFIRMADO
-SNAKE_SIZE = 15 #NÃO CONFIRMADO
+SNAKE_SIZE = 3 #NÃO CONFIRMADO
+
+APPLE_SIZE = 16
 
 # Apple Settings
 

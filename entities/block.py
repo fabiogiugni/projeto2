@@ -9,30 +9,43 @@ class Block(Surface):
         super().__init__(size)
         self._position = position
         self._image = None
+        self.__size = size
+
+        self.__rotation = 0
         
         # Load image if provided
         if image_path:
+            self.__image_path = image_path
             self.load_image(image_path, size)
+        
+
+    def setRotation(self, rotation: int):
+        self.__rotation = rotation
+        self.load_image(self.__image_path, self.__size)
 
     def load_image(self, image_path: str, size: tuple = None):
-        """Load and scale an image for the block"""
+        """Load and scale an image for the block with optional rotation"""
         try:
             # Load the image
             original_image = pygame.image.load(image_path).convert_alpha()
             
             # Scale to desired size if provided, otherwise use original size
             if size:
-                size = (size[0] * 2 , size[1]*2)
-                self._image = pygame.transform.scale(original_image, size)
+                size = (size[0] * 2, size[1] * 2)
+                scaled_image = pygame.transform.scale(original_image, size)
             else:
-                self._image = original_image
+                scaled_image = original_image
             
-            print(image_path)
-            print(self._image)
+            # Apply rotation if specified
+            if self.__rotation != 0:
+                
+                self._image = pygame.transform.rotate(scaled_image, self.__rotation)
+            else:
+                #print(self.__rotation)
+                self._image = scaled_image
             
             # Update the surface size to match the image
             super().__init__(self._image.get_size())
-            
             
         except pygame.error as e:
             print(f"Unable to load image: {image_path}")

@@ -18,7 +18,7 @@ snake = Snake(SCREEN_RANGE)
 direction = "DOWN"
 
 while True:
-    pygame.time.delay(100)
+    pygame.time.delay(60)
     pygame.display.flip()
 
     for event in pygame.event.get():
