@@ -3,7 +3,7 @@ from pygame import Surface
 from .block import Block
 from .snakeBlock import SnakeBlock
 
-from utils.settings import PURPLE, CYAN, GREEN, SNAKE_SIZE
+from utils.settings import PURPLE, CYAN, GREEN, SNAKE_SIZE, SCREEN_HEIGHT, SCREEN_WIDTH
 
 class Snake:
     def __init__(self, displayRange : tuple, position : tuple = (45, 45)):
@@ -48,7 +48,7 @@ class Snake:
         
 
     def walk(self):
-        if self.__isAlive == False:
+        if not self.__isAlive:
             return
 
         for i in range(1, len(self.__blocks)):
@@ -60,6 +60,11 @@ class Snake:
         for i in range(1, len(self.__blocks)):
             if self.__blocks[0].position == self.__blocks[i].position:
                 self.die()
+
+        x, y = self.__blocks[0].position
+        if x < 0 or x >= SCREEN_WIDTH or y < 0 or y >= SCREEN_HEIGHT:
+            self.die()
+
 
     def die(self):
         print("Cobra morta")

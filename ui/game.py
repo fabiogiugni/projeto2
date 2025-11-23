@@ -2,7 +2,7 @@ import pygame
 from entities.apple import Apple
 from entities.snake import Snake
 from ui.screen import Screen
-from utils.settings import SCREEN_HEIGHT, SCREEN_WIDTH
+from utils.settings import SCREEN_HEIGHT, SCREEN_WIDTH, WHITE, GREY, LIGHT_GREEN
 
 class Game(Screen):
     def __init__(self, game):
@@ -36,10 +36,48 @@ class Game(Screen):
             self.snake.grow()
             self.apple.beEaten()
 
+
+    def draw_border(self, display):
+      tile = 5  # tamanho do serrilhado
+
+      # Topo
+      for x in range(0, SCREEN_WIDTH, tile):
+          pygame.draw.polygon(display, LIGHT_GREEN, [
+              (x, 0),
+              (x + tile // 2, tile),
+              (x + tile, 0)
+          ])
+
+      # Base
+      for x in range(0, SCREEN_WIDTH, tile):
+          pygame.draw.polygon(display, LIGHT_GREEN, [
+              (x, SCREEN_HEIGHT),
+              (x + tile // 2, SCREEN_HEIGHT - tile),
+              (x + tile, SCREEN_HEIGHT)
+          ])
+
+      # Esquerda
+      for y in range(0, SCREEN_HEIGHT, tile):
+          pygame.draw.polygon(display, LIGHT_GREEN, [
+              (0, y),
+              (tile, y + tile // 2),
+              (0, y + tile)
+          ])
+
+      # Direita
+      for y in range(0, SCREEN_HEIGHT, tile):
+          pygame.draw.polygon(display, LIGHT_GREEN, [
+              (SCREEN_WIDTH, y),
+              (SCREEN_WIDTH - tile, y + tile // 2),
+              (SCREEN_WIDTH, y + tile)
+          ])
+
     def draw(self, display):
         super().draw(display)
+        self.draw_border(display)
+
         self.clock.tick(20)
-
-
         self.apple.draw(display)
         self.snake.draw(display)
+
+        
