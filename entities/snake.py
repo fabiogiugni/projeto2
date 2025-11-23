@@ -81,3 +81,6 @@ class Snake:
             return True
         else:
             return False
+    
+    def getIsAlive(self):
+        return self.__isAlive
