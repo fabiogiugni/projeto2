@@ -21,6 +21,10 @@ CYAN = (0, 255, 255)
 GREY = (128, 128, 128)
 DARK_GREEN = (1,  50, 32)
 
+GOLDEN = (255, 215, 0)
+SILVER = (192, 192, 192)
+BROWN = (205, 127, 50)
+
 # Game Settings
 GAME_TITLE = "Snake Game"
 
