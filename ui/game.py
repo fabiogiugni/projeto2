@@ -3,6 +3,7 @@ from entities.apple import Apple
 from entities.snake import Snake
 from ui.screen import Screen
 from utils.settings import SCREEN_HEIGHT, SCREEN_WIDTH, WHITE, LIGHT_GREEN, LIGHT_RED
+from ui.scoreBoard import ScoreBoard
 
 
 class Game(Screen):
@@ -13,8 +14,12 @@ class Game(Screen):
         self.apple = Apple(SCREEN_RANGE, image_path="assets/apple.png")
         self.snake = Snake(SCREEN_RANGE)
 
-        self.clock = pygame.time.Clock()
         self.press_text_rect = None
+
+        self.clock = pygame.time.Clock()
+
+        self.scoreboard = ScoreBoard(self.game.display)
+
 
     def handle_events(self, event):
         if self.snake.getIsAlive():
@@ -49,8 +54,13 @@ class Game(Screen):
             if self.snake.colide(self.apple):
                 self.snake.grow()
                 self.apple.beEaten()
+                self.scoreboard.increase_apple()
+
+            self.scoreboard.update_time()
+
         else:
             self.update_blinker()
+            self.scoreboard.freeze()
 
     def draw_border(self, display):
         tile = 5
@@ -107,3 +117,5 @@ class Game(Screen):
 
             self.press_text_rect = pygame.Rect(x, y, press.get_width(), press.get_height())
             display.blit(press, (x, y))
+
+        self.scoreboard.draw()
