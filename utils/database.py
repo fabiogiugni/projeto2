@@ -1,9 +1,6 @@
 import os
 import sqlite3
-from typing import TYPE_CHECKING, Optional
-
-#if TYPE_CHECKING:
-#    from ..entities.player import Player
+from typing import Optional
 
 
 class Database:
