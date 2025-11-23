@@ -58,7 +58,7 @@ class Block(Surface):
     def draw(self, display: pygame.display):
         """Draw the block - image takes priority over color"""
         if self._image:
-            display.blit(self._image, (self._position[0]-5, self._position[1] -5))
+            display.blit(self._image, (self._position[0], self._position[1]))
         else:
             display.blit(self, self._position)
         

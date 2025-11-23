@@ -35,17 +35,16 @@ class Snake:
 
     def turn(self, direction : str):
         if direction == "LEFT" and self.__direction == "RIGHT":
-            self.die()
+            return
         if direction == "RIGHT" and self.__direction == "LEFT":
-            self.die()
+            return
         if direction == "DOWN" and self.__direction == "UP":
-            self.die()
+            return
         if direction == "UP" and self.__direction == "DOWN":
-            self.die()
+            return
 
         self.__direction = direction
-        
-        
+         
 
     def walk(self):
         if not self.__isAlive:
@@ -77,10 +76,17 @@ class Snake:
         self.__size += 1
 
     def colide(self, block : Block):
-        if block.position == self.__blocks[0].position:
+        delta_x = block.position[0] - self.__blocks[0].position[0]
+        delta_y = block.position[1] - self.__blocks[0].position[1]
+
+        if abs(delta_x) <= 15 and abs(delta_y) <= 15:
             return True
         else:
             return False
     
     def getIsAlive(self):
         return self.__isAlive
+    
+    @property
+    def size(self):
+        return self.__size
