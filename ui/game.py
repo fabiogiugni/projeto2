@@ -17,8 +17,13 @@ class Game(Screen):
         self.press_text_rect = None
 
         self.clock = pygame.time.Clock()
-
         self.scoreboard = ScoreBoard(self.game.display)
+        
+        self.death_sound_played = False
+        pygame.mixer.music.load("assets/loop.ogg")
+        pygame.mixer.music.set_volume(self.game.volume) 
+        pygame.mixer.music.play(-1)
+
 
 
     def handle_events(self, event):
@@ -34,6 +39,7 @@ class Game(Screen):
                     self.snake.turn("DOWN")
 
         else:
+            pygame.mixer.music.stop()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     from ui.start import Start
@@ -97,7 +103,7 @@ class Game(Screen):
         super().draw(display)
 
         if self.snake.getIsAlive():
-            self.clock.tick(20)
+            self.clock.tick(self.game.difficulty)
             self.draw_border(display)
             self.apple.draw(display)
             self.snake.draw(display)
@@ -117,5 +123,12 @@ class Game(Screen):
 
             self.press_text_rect = pygame.Rect(x, y, press.get_width(), press.get_height())
             display.blit(press, (x, y))
+            if (not self.death_sound_played):
+              pygame.mixer.music.stop()
+              pygame.mixer.music.load("assets/sad.mp3")
+              pygame.mixer.music.set_volume(self.game.volume) 
+              pygame.mixer.music.play(-1)
+              self.death_sound_played = True
+
 
         self.scoreboard.draw()
