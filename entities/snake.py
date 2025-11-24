@@ -71,7 +71,7 @@ class Snake(WalkInterface):
         self.__isAlive = False
 
     def grow(self):
-        new_block = SnakeBlock((-15, -15), image_path="assets/snake_body.png")
+        new_block = SnakeBlock((-100, -100), image_path="assets/snake_body.png")
         new_block.fillColor(GREEN)
         self.__blocks.append(new_block)
         self.__size += 1
