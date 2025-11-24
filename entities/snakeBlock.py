@@ -1,8 +1,9 @@
 from .block import Block
+from .walkInterface import WalkInterface
 
 from utils.settings import BLOCK_SIZE,SNAKE_SPEED
 
-class SnakeBlock(Block):
+class SnakeBlock(Block,WalkInterface):
     def __init__(self, position : tuple = (45, 45), image_path: str = None):
         super().__init__(size = (BLOCK_SIZE, BLOCK_SIZE), position = position, image_path=image_path)
 

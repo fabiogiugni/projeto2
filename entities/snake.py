@@ -2,10 +2,11 @@ import pygame
 from pygame import Surface
 from .block import Block
 from .snakeBlock import SnakeBlock
+from .walkInterface import WalkInterface
 
 from utils.settings import PURPLE, CYAN, GREEN, SNAKE_SIZE, SCREEN_HEIGHT, SCREEN_WIDTH
 
-class Snake:
+class Snake(WalkInterface):
     def __init__(self, displayRange : tuple, position : tuple = (45, 45)):
         self.__position = position
         self.__size = SNAKE_SIZE
