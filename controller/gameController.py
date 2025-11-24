@@ -12,8 +12,10 @@ class GameController:
         self.display = pygame.display.set_mode(self.size)
         pygame.display.set_caption("Snake Game")
         self.clock = pygame.time.Clock()
-
         self.current_screen = Start(self)
+
+        self.volume = 0.1
+        self.difficulty = 20
 
     def run(self):
         while True:
