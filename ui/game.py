@@ -25,6 +25,9 @@ class Game(Screen):
         pygame.mixer.music.set_volume(self.game.volume) 
         pygame.mixer.music.play(-1)
 
+        self.saved = False
+
+
 
 
     def handle_events(self, event):
@@ -130,6 +133,16 @@ class Game(Screen):
               pygame.mixer.music.set_volume(self.game.volume) 
               pygame.mixer.music.play(-1)
               self.death_sound_played = True
-
+            
+            if not self.saved:
+                from utils.database import Database
+                try:
+                    db = Database()
+                    db.insertScore(self.player_name, self.scoreboard.apples, self.scoreboard.time, self.scoreboard.score)
+                    db.close()
+                    self.saved = True
+                except Exception as e:
+                    print(f"Erro ao salvar score no DB: {e}")
+                    self.saved = True
 
         self.scoreboard.draw()
