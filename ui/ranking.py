@@ -68,7 +68,6 @@ class Ranking(Screen):
         self.addScore("Teste", score4)
         ###############################
 
-        # Título principal
         title = self.title_font.render("SNAKE GAME", False, WHITE)
         display.blit(
             title,
@@ -113,12 +112,8 @@ class Ranking(Screen):
         for i, sb in enumerate(sorted_scores):
             name, score_obj, _ = sb
             
-            # Cor alternada para as linhas (opcional)
             row_color = WHITE
-            # Alternar cores para melhor legibilidade:
-            # row_color = LIGHT_GRAY if i % 2 == 0 else WHITE
             
-            # Formatar os dados com espaçamento consistente
             name_text = f"{name:<12}"      # 12 caracteres para nome
             apples_text = f"{score_obj.apples:>2}"        # 2 dígitos para maçãs
             time_text = f"{score_obj.time:>4}"           # 4 dígitos para tempo

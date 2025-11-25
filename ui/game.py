@@ -18,7 +18,8 @@ class Game(Screen):
 
         self.clock = pygame.time.Clock()
         self.scoreboard = ScoreBoard(self.game.display)
-        
+        self.player_name = self.game.player_name
+        print(self.player_name)
         self.death_sound_played = False
         pygame.mixer.music.load("assets/loop.ogg")
         pygame.mixer.music.set_volume(self.game.volume) 
