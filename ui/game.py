@@ -18,11 +18,15 @@ class Game(Screen):
 
         self.clock = pygame.time.Clock()
         self.scoreboard = ScoreBoard(self.game.display)
-        
+        self.player_name = self.game.player_name
+        print(self.player_name)
         self.death_sound_played = False
         pygame.mixer.music.load("assets/loop.ogg")
         pygame.mixer.music.set_volume(self.game.volume) 
         pygame.mixer.music.play(-1)
+
+        self.saved = False
+
 
 
 
@@ -129,6 +133,16 @@ class Game(Screen):
               pygame.mixer.music.set_volume(self.game.volume) 
               pygame.mixer.music.play(-1)
               self.death_sound_played = True
-
+            
+            if not self.saved:
+                from utils.database import Database
+                try:
+                    db = Database()
+                    db.insertScore(self.player_name, self.scoreboard.apples, self.scoreboard.time, self.scoreboard.score)
+                    db.close()
+                    self.saved = True
+                except Exception as e:
+                    print(f"Erro ao salvar score no DB: {e}")
+                    self.saved = True
 
         self.scoreboard.draw()

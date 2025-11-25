@@ -45,6 +45,7 @@ class Configs(Screen):
             if self.back_rect.collidepoint(mx, my):
                 self.game.volume = self.volume
                 self.game.difficulty = self.difficulty
+                pygame.mixer.music.stop()
 
                 from ui.menu import Menu
                 self.game.current_screen = Menu(self.game)

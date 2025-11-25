@@ -51,18 +51,27 @@ class Snake(WalkInterface):
         if not self.__isAlive:
             return
 
-        for i in range(1, len(self.__blocks)):
-            self.__blocks[len(self.__blocks) - i].position = self.__blocks[len(self.__blocks) - i - 1].position
+        # salva posição anterior do bloco da frente
+        prev_pos = self.__blocks[0].position
 
+        # move a cabeça
         self.__blocks[0].turn(self.__direction)
         self.__blocks[0].walk()
 
+        # move o corpo inteiro
         for i in range(1, len(self.__blocks)):
-            if self.__blocks[0].position == self.__blocks[i].position:
+            current_pos = self.__blocks[i].position
+            self.__blocks[i].position = prev_pos
+            prev_pos = current_pos
+
+        # checar colisão com o corpo (mas de forma segura)
+        head_x, head_y = self.__blocks[0].position
+        for block in self.__blocks[1:]:
+            if block.position == (head_x, head_y):
                 self.die()
 
-        x, y = self.__blocks[0].position
-        if x < 0 or x >= SCREEN_WIDTH or y < 0 or y >= SCREEN_HEIGHT:
+        # bordas
+        if head_x < 0 or head_x >= SCREEN_WIDTH or head_y < 0 or head_y >= SCREEN_HEIGHT:
             self.die()
 
 
