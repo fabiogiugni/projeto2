@@ -21,6 +21,10 @@ CYAN = (0, 255, 255)
 GREY = (128, 128, 128)
 DARK_GREEN = (1,  50, 32)
 
+GOLDEN = (255, 215, 0)
+SILVER = (192, 192, 192)
+BROWN = (205, 127, 50)
+
 # Game Settings
 GAME_TITLE = "Snake Game"
 
@@ -28,7 +32,7 @@ GAME_TITLE = "Snake Game"
 SNAKE_SPEED = 15 #NÃO CONFIRMADO
 SNAKE_SIZE = 3 #NÃO CONFIRMADO
 
-APPLE_SIZE = 16
+APPLE_SIZE = 15
 
 # Apple Settings
 
