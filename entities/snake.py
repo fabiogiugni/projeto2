@@ -30,8 +30,9 @@ class Snake(WalkInterface):
         if self.__direction == "LEFT":
             rotation = 90
 
+        self.__blocks[0].setRotation(rotation=rotation)
         for b in self.__blocks:
-            b.setRotation(rotation=rotation)
+            
             b.draw(display)
 
     def turn(self, direction : str):
