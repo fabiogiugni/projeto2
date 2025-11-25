@@ -57,9 +57,9 @@ project/
 
 ---
 
-## 🚀 Como Executar
+## 🚀 Como Executar (Windows)
 ```
-pip install -r requirements.txt
+./ativa_venv.ps1
 python main.py
 ```
 
