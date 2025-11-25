@@ -11,7 +11,12 @@ class ScoreBoard:
 
         self.font = pygame.font.Font("assets/Jersey25-Regular.ttf", 28)
 
+        # Criar apenas UMA VEZ
         self.overlay_surface = pygame.Surface((500, 50), pygame.SRCALPHA)
+        self.overlay_surface.set_alpha(180)  # NÃO chamar no draw()
+
+        self.frozen = False
+        self.frozen_time = 0
 
     def update_score(self):
         self.score = (self.apples * 10) + (self.time * 1)
@@ -21,17 +26,22 @@ class ScoreBoard:
         self.update_score()
 
     def update_time(self):
+        if self.frozen:
+            return
+
         now = pygame.time.get_ticks()
         self.time = (now - self.start_time) // 1000
         self.update_score()
 
     def freeze(self):
         """Congela o tempo após morrer."""
-        pass  
+        if not self.frozen:
+            self.frozen = True
+            self.frozen_time = self.time
 
     def draw(self):
+        # limpar a surface sem recriar
         self.overlay_surface.fill((0, 0, 0, 0))
-        self.overlay_surface.set_alpha(180)
 
         apples_text = self.font.render(f"Maçãs: {self.apples}", True, LIGHT_GREEN)
         time_text   = self.font.render(f"Tempo: {self.time}", True, LIGHT_GREEN)
